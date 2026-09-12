@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.sql.Connection;
 
 class Main {
         public static void main(String[] args) {
@@ -47,6 +48,13 @@ class Main {
 
 
             frame.setVisible(true); // makes frame visible
+
+
+            Connection connection = DatabaseConnection.getConnection();
+
+            if(connection != null){
+                System.out.println("Database connection successful!");
+            }
 
     }
 }

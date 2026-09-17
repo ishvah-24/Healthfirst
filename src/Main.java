@@ -1,60 +1,40 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
-import java.sql.Connection;
 
-class Main {
-        public static void main(String[] args) {
-            ImageIcon logo = new ImageIcon("health_low_res.png");
+public class Main extends JFrame {
 
-            JFrame frame = new JFrame(); //creates a JFrame instance
-            frame.setSize(1350, 750);
-            frame.setIconImage(logo.getImage());
-            frame.setResizable(false);
-            frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            frame.setTitle("Healthfirst Pharmarcies");
-            frame.setLayout(new BorderLayout());
+    private CardLayout cardLayout;
+    private JPanel mainPanel;
 
-            Panel panel_1 = new Panel();
-            Panel panel_2 = new Panel();
-            Panel panel_3 = new Panel();
-            Panel panel_4 = new Panel();
-            Panel panel_5 = new Panel();
+    public Main() {
 
-            panel_1.setBackground(Color.pink);
-            panel_2.setBackground(Color.orange);
-            panel_3.setBackground(Color.blue);
-            panel_4.setBackground(Color.yellow);
-            panel_5.setBackground(Color.white);
+        cardLayout = new CardLayout(20, 0);
 
+        mainPanel = new JPanel(cardLayout);
+        mainPanel.setPreferredSize(new Dimension(1000, 700));
+        mainPanel.setBackground(Color.WHITE);
 
-            panel_1.setPreferredSize(new Dimension(100, 50));
-            panel_2.setPreferredSize(new Dimension(100, 50));
-            panel_3.setPreferredSize(new Dimension(100, 50));
-            panel_4.setPreferredSize(new Dimension(100, 50));
-            panel_5.setPreferredSize(new Dimension(100, 50));
+        //JPanel wrapper = new JPanel(new GridBagLayout());
+        //wrapper.add(mainPanel);
 
-            //create a new instance of the login screen class
-            login loginScreen = new login();
+        mainPanel.add(new login(this), "LOGIN");
+        mainPanel.add(new Admin(this), "ADMIN");
+        mainPanel.add(new Cashier(this), "CASHIER");
 
-            //add login instance to center panel
-            panel_5.add(loginScreen, Component.CENTER_ALIGNMENT);
+        add(mainPanel);
 
-            frame.add(panel_1, BorderLayout.NORTH);
-            frame.add(panel_2, BorderLayout.SOUTH);
-            frame.add(panel_3, BorderLayout.EAST);
-            frame.add(panel_4, BorderLayout.WEST);
-            frame.add(panel_5, BorderLayout.CENTER);
+        setTitle("HealthFirst Pharmacy");
+        setSize(1000, 700);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
 
+    public void showPanel(String panelName) {
+        cardLayout.show(mainPanel, panelName);
+    }
 
-            frame.setVisible(true); // makes frame visible
-
-
-            Connection connection = DatabaseConnection.getConnection();
-
-            if(connection != null){
-                System.out.println("Database connection successful!");
-            }
-
+    public static void main(String[] args) {
+        new Main();
     }
 }

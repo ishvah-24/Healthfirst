@@ -1,3 +1,11 @@
+package gui;
+
+import gui.Admin;
+import gui.Cashier;
+import gui.Main;
+import model.User;
+import service.UserService;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,7 +25,7 @@ class login extends JPanel implements ActionListener {
 
         this.setBackground(Color.WHITE);
 
-        //image icon on login screen
+        //image icon on gui.login screen
         ImageIcon logo = new ImageIcon("health_low_res.png");
         JLabel logoImage = new JLabel(logo);
 

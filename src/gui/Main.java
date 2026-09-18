@@ -1,3 +1,6 @@
+package gui;
+import gui.Admin.*;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,7 +14,7 @@ public class Main extends JFrame {
         cardLayout = new CardLayout(20, 0);
 
         mainPanel = new JPanel(cardLayout);
-        mainPanel.setPreferredSize(new Dimension(1000, 700));
+        mainPanel.setPreferredSize(new Dimension(1366, 769));
         mainPanel.setBackground(Color.WHITE);
 
         //JPanel wrapper = new JPanel(new GridBagLayout());
@@ -24,7 +27,7 @@ public class Main extends JFrame {
         add(mainPanel);
 
         setTitle("HealthFirst Pharmacy");
-        setSize(1000, 700);
+        setSize(1366, 768);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);

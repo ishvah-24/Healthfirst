@@ -1,4 +1,4 @@
-import java.io.*;
+package model;
 
 public class User {
     private int user_id;
@@ -8,7 +8,7 @@ public class User {
     private String full_name;
 
     //Constructor
-    User(int user_id, String username, String password, String role, String full_name){
+    public User(int user_id, String username, String password, String role, String full_name){
         this.user_id = user_id;
         this.username = username;
         this.password = password;
@@ -30,10 +30,7 @@ public class User {
         return password;
     }
 
-    public String getRole() {
-
-        return role;
-    }
+    public String getRole() {return role;}
 
     public String getFull_name() {
         return full_name;

@@ -1,3 +1,7 @@
+package gui;
+
+import gui.Main;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,7 +11,7 @@ public class Cashier extends JPanel {
         this.mainFrame = mainFrame;
         setLayout(new BorderLayout());
 
-        JLabel cashier = new JLabel("Cashier");
+        JLabel cashier = new JLabel("gui.Cashier");
         add(cashier);
 
     }

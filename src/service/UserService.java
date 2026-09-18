@@ -1,3 +1,8 @@
+package service;
+
+import database.DatabaseConnection;
+import model.User;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -164,7 +169,7 @@ public class UserService{
     }
 
 
-    // Delete User
+    // Delete model.User
     public boolean deleteUser(int userId) {
 
         String sql = "DELETE FROM users WHERE user_id = ?";

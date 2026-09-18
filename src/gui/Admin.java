@@ -1,3 +1,7 @@
+package gui;
+
+import gui.Main;
+
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.awt.*;
@@ -10,7 +14,7 @@ public class Admin extends JPanel{
         this.mainFrame = mainFrame;
 
         setLayout(new BorderLayout());
-        JLabel admin = new JLabel("Admin dashboard");
+        JLabel admin = new JLabel("gui.Admin dashboard");
 
         this.add(admin);
 
@@ -32,7 +36,7 @@ public class Admin extends JPanel{
 
 
         JPanel manageMedicines = new JPanel();
-        JLabel manage_medicine = new JLabel("Manage Medicine");
+        JLabel manage_medicine = new JLabel("Manage model.Medicine");
         manageMedicines.add(manage_medicine);
         manageMedicines.setPreferredSize(new Dimension(1000, 700));
 

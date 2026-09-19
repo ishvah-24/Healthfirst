@@ -1,5 +1,4 @@
 package gui;
-import gui.Admin.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,25 +10,24 @@ public class Main extends JFrame {
 
     public Main() {
 
-        cardLayout = new CardLayout(20, 0);
+        cardLayout = new CardLayout();
 
         mainPanel = new JPanel(cardLayout);
-        mainPanel.setPreferredSize(new Dimension(1366, 769));
         mainPanel.setBackground(Color.WHITE);
 
-        //JPanel wrapper = new JPanel(new GridBagLayout());
-        //wrapper.add(mainPanel);
-
+        // Add all main panels
         mainPanel.add(new login(this), "LOGIN");
         mainPanel.add(new Admin(this), "ADMIN");
         mainPanel.add(new Cashier(this), "CASHIER");
 
-        add(mainPanel);
+        // Main panel fills the entire JFrame
+        add(mainPanel, BorderLayout.CENTER);
 
         setTitle("HealthFirst Pharmacy");
         setSize(1366, 768);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+
         setVisible(true);
     }
 
@@ -38,6 +36,9 @@ public class Main extends JFrame {
     }
 
     public static void main(String[] args) {
-        new Main();
+
+        SwingUtilities.invokeLater(() -> {
+            new Main();
+        });
     }
 }

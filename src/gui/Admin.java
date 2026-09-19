@@ -1,62 +1,61 @@
 package gui;
 
-import gui.Main;
+import gui.ManageMedicine.ManageMedicine;
+import gui.ManageSuppliers;
+import gui.manage_users;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.awt.*;
 
-public class Admin extends JPanel{
+public class Admin extends JPanel {
+
     private Main mainFrame;
 
+    public Admin(Main mainFrame) {
 
-    public Admin(Main mainFrame){
         this.mainFrame = mainFrame;
 
+        // Admin fills the entire available space
         setLayout(new BorderLayout());
-        JLabel admin = new JLabel("gui.Admin dashboard");
+        setBackground(Color.WHITE);
 
-        this.add(admin);
-
+        // Create tabbed pane
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.LEFT);
 
+        // Customize tab sizes
         tabbedPane.setUI(new BasicTabbedPaneUI() {
-             @Override
-             protected int calculateTabWidth(int tabPlacement, int tabIndex, FontMetrics metrics) {
-                 return 75;
-             }
 
-             @Override
-             protected int calculateTabHeight(int tabPlacement,
-                                              int tabIndex,
-                                              int fontHeight) {
-                 return 113; // height of each tab
-             }
-         });
+            @Override
+            protected int calculateTabWidth(
+                    int tabPlacement,
+                    int tabIndex,
+                    FontMetrics metrics) {
 
+                return 120;
+            }
 
-        JPanel manageMedicines = new JPanel();
-        JLabel manage_medicine = new JLabel("Manage model.Medicine");
-        manageMedicines.add(manage_medicine);
-        manageMedicines.setPreferredSize(new Dimension(1000, 700));
+            @Override
+            protected int calculateTabHeight(
+                    int tabPlacement,
+                    int tabIndex,
+                    int fontHeight) {
 
-        JPanel manageSuppliers = new JPanel();
-        JLabel manage_suppliers = new JLabel("Manage Suppliers");
-        manageSuppliers.add(manage_suppliers);
+                return 113;
+            }
+        });
 
-        JPanel manageUsers = new JPanel();
-        JLabel manage_users = new JLabel("Manage Users");
-        manageUsers.add(manage_users);
+        // Create management panels
+        JPanel manageMedicines = new ManageMedicine();
+        JPanel manageSuppliers = new ManageSuppliers();
+        JPanel manageUsers = new manage_users();
 
-        tabbedPane.addTab("Medicines" ,manageMedicines);
-        tabbedPane.addTab("Suppliers" ,manageSuppliers);
-        tabbedPane.addTab("Users" ,manageUsers);
+        // Add tabs
+        tabbedPane.addTab("Medicines", manageMedicines);
+        tabbedPane.addTab("Suppliers", manageSuppliers);
+        tabbedPane.addTab("Users", manageUsers);
 
-        tabbedPane.setPreferredSize(new Dimension(1000, 700));
-
-
-        //JLabel welcomeMessage = new JLabel("Welcome Back " + user.getFull_name());
-        //add(welcomeMessage);
-        this.add(tabbedPane);
+        // Tabbed pane fills the entire Admin panel
+        add(tabbedPane, BorderLayout.CENTER);
     }
 }

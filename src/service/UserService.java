@@ -143,7 +143,7 @@ public class UserService{
                               String role, String fullName) {
 
         String sql = "UPDATE users " +
-                "]SET username = ?, password = ?, role = ?, full_name = ? " +
+                "SET username = ?, password = ?, role = ?, full_name = ? " +
                 "WHERE user_id = ?";
 
         try (
@@ -168,7 +168,6 @@ public class UserService{
         return false;
     }
 
-
     // Delete model.User
     public boolean deleteUser(int userId) {
 
@@ -190,5 +189,39 @@ public class UserService{
         }
 
         return false;
+    }
+
+
+    // Get all cashier users
+    public List<User> getCashiers() {
+
+        String sql = "SELECT * FROM users WHERE role = 'CASHIER'";
+
+        List<User> users = new ArrayList<>();
+
+        try (
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql);
+                ResultSet resultSet = statement.executeQuery()
+        ) {
+
+            while (resultSet.next()) {
+
+                User user = new User(
+                        resultSet.getInt("user_id"),
+                        resultSet.getString("username"),
+                        resultSet.getString("password"),
+                        resultSet.getString("role"),
+                        resultSet.getString("full_name")
+                );
+
+                users.add(user);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return users;
     }
 }

@@ -18,12 +18,12 @@ class login extends JPanel implements ActionListener {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(Color.WHITE);
 
-        // Logo
+        //logo
         ImageIcon logo = new ImageIcon("health_low_res.png");
         JLabel logoImage = new JLabel(logo);
         logoImage.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        // Username
+        // username
         JLabel usernameLabel = new JLabel("Username:");
         usernameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -43,24 +43,24 @@ class login extends JPanel implements ActionListener {
         JButton submitBtn = new JButton("Submit");
         submitBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        //when the submit button is press, it performs the following tasks:
         submitBtn.addActionListener(e -> {
 
+            //extracts the text the user has entered
             String username_ = username.getText();
             String password_ = new String(password.getPassword());
-
             User user = UserService.login(username_, password_);
 
+            //retrieves the role of the user
             if (user != null) {
-
                 if (user.getRole().equals("ADMIN")) {
                     mainFrame.showPanel("ADMIN");
 
                 } else if (user.getRole().equals("CASHIER")) {
                     mainFrame.showPanel("CASHIER");
                 }
-
+                //user validation
             } else {
-
                 JOptionPane.showMessageDialog(
                         this,
                         "Invalid Username or Password.",
@@ -72,29 +72,22 @@ class login extends JPanel implements ActionListener {
 
         // Add components
         add(Box.createVerticalGlue());
-
         add(logoImage);
         add(Box.createVerticalStrut(30));
-
         add(usernameLabel);
         add(Box.createVerticalStrut(5));
         add(username);
-
         add(Box.createVerticalStrut(20));
-
         add(passwordLabel);
         add(Box.createVerticalStrut(5));
         add(password);
-
         add(Box.createVerticalStrut(25));
-
         add(submitBtn);
-
         add(Box.createVerticalGlue());
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // Not needed because the button uses its own ActionListener
+        // this was not needed, however placed here to remove exception errors when implementing ActionListener
     }
 }

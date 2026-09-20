@@ -18,7 +18,6 @@ public class Reports extends JPanel {
     private DefaultTableModel expiryModel;
 
     public Reports() {
-
         reportService = new ReportService();
 
         setLayout(new BorderLayout(10, 10));
@@ -29,18 +28,11 @@ public class Reports extends JPanel {
 
         add(title, BorderLayout.NORTH);
 
-        // =========================
         // TABS
-        // =========================
-
         JTabbedPane tabs = new JTabbedPane();
 
-        // -------------------------
         // SALES REPORT
-        // -------------------------
-
         JPanel salesPanel = new JPanel(new BorderLayout(10, 10));
-
         JButton loadSalesButton = new JButton("Load Sales Report");
 
         String[] salesColumns = {
@@ -59,27 +51,14 @@ public class Reports extends JPanel {
         salesTable = new JTable(salesModel);
         salesTable.setRowHeight(30);
 
-        salesPanel.add(
-                new JScrollPane(salesTable),
-                BorderLayout.CENTER
-        );
-
-        salesPanel.add(
-                loadSalesButton,
-                BorderLayout.SOUTH
-        );
+        salesPanel.add(new JScrollPane(salesTable), BorderLayout.CENTER);
+        salesPanel.add(loadSalesButton, BorderLayout.SOUTH);
 
         loadSalesButton.addActionListener(e -> loadSalesReport());
 
-
-        // -------------------------
         // EXPIRY REPORT
-        // -------------------------
-
         JPanel expiryPanel = new JPanel(new BorderLayout(10, 10));
-
-        JButton loadExpiryButton =
-                new JButton("Load Expiry Report");
+        JButton loadExpiryButton = new JButton("Load Expiry Report");
 
         String[] expiryColumns = {
                 "Medicine ID",
@@ -100,61 +79,36 @@ public class Reports extends JPanel {
         expiryTable = new JTable(expiryModel);
         expiryTable.setRowHeight(30);
 
-        expiryPanel.add(
-                new JScrollPane(expiryTable),
-                BorderLayout.CENTER
-        );
+        expiryPanel.add(new JScrollPane(expiryTable), BorderLayout.CENTER);
+        expiryPanel.add(loadExpiryButton, BorderLayout.SOUTH);
 
-        expiryPanel.add(
-                loadExpiryButton,
-                BorderLayout.SOUTH
-        );
-
-        loadExpiryButton.addActionListener(
-                e -> loadExpiryReport()
-        );
-
+        loadExpiryButton.addActionListener(e -> loadExpiryReport());
 
         // Add tabs
-
         tabs.addTab("Sales Report", salesPanel);
         tabs.addTab("Expiry Report", expiryPanel);
 
         add(tabs, BorderLayout.CENTER);
     }
 
-
-    // =========================
     // LOAD SALES REPORT
-    // =========================
-
     private void loadSalesReport() {
-
         salesModel.setRowCount(0);
 
-        List<Object[]> sales =
-                reportService.getSalesReport();
+        List<Object[]> sales = reportService.getSalesReport();
 
         for (Object[] sale : sales) {
-
             salesModel.addRow(sale);
         }
     }
 
 
-    // =========================
-    // LOAD EXPIRY REPORT
-    // =========================
-
+// load the expiry report
     private void loadExpiryReport() {
-
         expiryModel.setRowCount(0);
-
-        List<Object[]> medicines =
-                reportService.getExpiringMedicines();
+        List<Object[]> medicines = reportService.getExpiringMedicines();
 
         for (Object[] medicine : medicines) {
-
             expiryModel.addRow(medicine);
         }
     }

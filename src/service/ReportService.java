@@ -1,4 +1,4 @@
-package reports;
+package service;
 
 import database.DatabaseConnection;
 
@@ -9,10 +9,7 @@ import java.util.List;
 
 public class ReportService {
 
-    // =========================
     // SALES REPORT
-    // =========================
-
     public List<Object[]> getSalesReport() {
 
         List<Object[]> sales = new ArrayList<>();
@@ -48,11 +45,7 @@ public class ReportService {
         return sales;
     }
 
-
-    // =========================
     // EXPIRY REPORT
-    // =========================
-
     public List<Object[]> getExpiringMedicines() {
 
         List<Object[]> medicines = new ArrayList<>();
@@ -62,12 +55,7 @@ public class ReportService {
 
         String sql = """
                 SELECT 
-                    medicine_id,
-                    name,
-                    company,
-                    medicine_type,
-                    expiry_date,
-                    quantity_in_stock
+                    medicine_id, name,company, medicine_type,expiry_date,quantity_in_stock
                 FROM medicines
                 WHERE expiry_date BETWEEN ? AND ?
                 ORDER BY expiry_date ASC

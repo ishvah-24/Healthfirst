@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
-class manage_users extends JPanel {
+class Manageusers extends JPanel {
 
     private JTable userTable;
     private DefaultTableModel tableModel;
@@ -19,7 +19,7 @@ class manage_users extends JPanel {
 
     private UserService userService;
 
-    public manage_users() {
+    public Manageusers() {
 
         userService = new UserService();
 
@@ -31,15 +31,13 @@ class manage_users extends JPanel {
                 )
         );
 
-        // =====================================
         // TITLE
-        // =====================================
-
         JLabel title = new JLabel("Manage Cashier Accounts");
 
         title.setFont(
                 new Font("Arial", Font.BOLD, 24)
         );
+        setBackground(Color.LIGHT_GRAY);
 
         add(title, BorderLayout.NORTH);
 
@@ -163,10 +161,7 @@ class manage_users extends JPanel {
         );
 
 
-        // =====================================
         // BUTTONS
-        // =====================================
-
         JPanel buttonPanel =
                 new JPanel(
                         new FlowLayout(
@@ -193,10 +188,7 @@ class manage_users extends JPanel {
         buttonPanel.add(clearButton);
 
 
-        // =====================================
         // BOTTOM PANEL
-        // =====================================
-
         JPanel bottomPanel =
                 new JPanel(new BorderLayout());
 
@@ -216,10 +208,7 @@ class manage_users extends JPanel {
         );
 
 
-        // =====================================
         // BUTTON EVENTS
-        // =====================================
-
         createButton.addActionListener(
                 e -> createCashier()
         );
@@ -237,10 +226,7 @@ class manage_users extends JPanel {
         );
 
 
-        // =====================================
         // TABLE SELECTION
-        // =====================================
-
         userTable.getSelectionModel()
                 .addListSelectionListener(e -> {
 
@@ -251,18 +237,12 @@ class manage_users extends JPanel {
                 });
 
 
-        // =====================================
         // LOAD CASHIERS
-        // =====================================
-
         loadCashiers();
     }
 
 
-    // =========================================
     // LOAD CASHIERS
-    // =========================================
-
     private void loadCashiers() {
 
         tableModel.setRowCount(0);
@@ -284,10 +264,7 @@ class manage_users extends JPanel {
     }
 
 
-    // =========================================
     // CREATE CASHIER
-    // =========================================
-
     private void createCashier() {
 
         String username =
@@ -350,10 +327,7 @@ class manage_users extends JPanel {
     }
 
 
-    // =========================================
     // UPDATE CASHIER
-    // =========================================
-
     private void updateCashier() {
 
         int selectedRow =
@@ -449,13 +423,9 @@ class manage_users extends JPanel {
                     this,
                     "Cashier account updated successfully."
             );
-
             clearForm();
-
             loadCashiers();
-
         } else {
-
             JOptionPane.showMessageDialog(
                     this,
                     "Could not update cashier account.",
@@ -484,10 +454,8 @@ class manage_users extends JPanel {
                     "No Selection",
                     JOptionPane.WARNING_MESSAGE
             );
-
             return;
         }
-
 
         int userId =
                 (int) tableModel.getValueAt(
@@ -523,16 +491,12 @@ class manage_users extends JPanel {
 
 
         if (success) {
-
             JOptionPane.showMessageDialog(
                     this,
                     "Cashier account deleted successfully."
             );
-
             clearForm();
-
             loadCashiers();
-
         } else {
 
             JOptionPane.showMessageDialog(
@@ -545,20 +509,14 @@ class manage_users extends JPanel {
     }
 
 
-    // =========================================
-    // LOAD SELECTED USER
-    // =========================================
-
     private void loadSelectedUser() {
 
         int selectedRow =
                 userTable.getSelectedRow();
 
-
         if (selectedRow == -1) {
             return;
         }
-
 
         usernameField.setText(
                 tableModel.getValueAt(
@@ -567,32 +525,21 @@ class manage_users extends JPanel {
                 ).toString()
         );
 
-
         fullNameField.setText(
                 tableModel.getValueAt(
                         selectedRow,
                         2
                 ).toString()
         );
-
-
         // Don't display the password
         passwordField.setText("");
     }
 
-
-    // =========================================
     // CLEAR FORM
-    // =========================================
-
     private void clearForm() {
-
         usernameField.setText("");
-
         fullNameField.setText("");
-
         passwordField.setText("");
-
         userTable.clearSelection();
     }
 }

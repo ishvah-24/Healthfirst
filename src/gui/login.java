@@ -1,8 +1,5 @@
 package gui;
 
-import gui.Admin;
-import gui.Cashier;
-import gui.Main;
 import model.User;
 import service.UserService;
 
@@ -11,82 +8,93 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 class login extends JPanel implements ActionListener {
 
     private Main mainFrame;
 
-    public login(Main mainFrame){
+    public login(Main mainFrame) {
         this.mainFrame = mainFrame;
 
-        //this layout manager allows for components to be stacked one on top of each other
-        //instead of being in line on the x-axis
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setBackground(Color.WHITE);
 
-        this.setBackground(Color.WHITE);
-
-        //image icon on gui.login screen
+        // Logo
         ImageIcon logo = new ImageIcon("health_low_res.png");
         JLabel logoImage = new JLabel(logo);
+        logoImage.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        //labels for textfield indication
-        JLabel usernameLabel = new JLabel("Username: ");
-        JLabel passwordLabel = new JLabel("Password: ");
+        // Username
+        JLabel usernameLabel = new JLabel("Username:");
+        usernameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JTextField username = new JTextField();
-        JTextField password = new JTextField();
+        username.setPreferredSize(new Dimension(300, 40));
+        username.setMaximumSize(new Dimension(300, 40));
 
-        //configuring size of textfields
-        username.setPreferredSize(new Dimension(20, 40));
-        password.setPreferredSize(new Dimension(20, 40));
+        // Password
+        JLabel passwordLabel = new JLabel("Password:");
+        passwordLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton submitBtn = new JButton(new AbstractAction("Submit") {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String username_ = username.getText();
-                String password_ = password.getText();
+        JPasswordField password = new JPasswordField();
+        password.setPreferredSize(new Dimension(300, 40));
+        password.setMaximumSize(new Dimension(300, 40));
 
-                UserService.login(username_, password_);
-                System.out.println(username_ + password_);
+        // Submit button
+        JButton submitBtn = new JButton("Submit");
+        submitBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-                User user = UserService.login(username_, password_);
+        submitBtn.addActionListener(e -> {
 
-                if( user != null) {
-                    if(user.getRole().equals("ADMIN")){
-                        Admin admin = new Admin(mainFrame);
-                        mainFrame.showPanel("ADMIN");
+            String username_ = username.getText();
+            String password_ = new String(password.getPassword());
 
-                    }else if (user.getRole().equals("CASHIER")) {
-                        Cashier cashier = new Cashier(mainFrame);
-                        mainFrame.showPanel("CASHIER");
-                    }
+            User user = UserService.login(username_, password_);
 
-                }else{
-                    System.out.println("Invalid Username or Password, try again.");
-                    JLabel invalidLogin = new JLabel("Invalid Username or Password, try again.");
-                    add(invalidLogin);
+            if (user != null) {
+
+                if (user.getRole().equals("ADMIN")) {
+                    mainFrame.showPanel("ADMIN");
+
+                } else if (user.getRole().equals("CASHIER")) {
+                    mainFrame.showPanel("CASHIER");
                 }
 
+            } else {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Invalid Username or Password.",
+                        "Login Failed",
+                        JOptionPane.ERROR_MESSAGE
+                );
             }
         });
 
-        submitBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        // Add components
+        add(Box.createVerticalGlue());
 
+        add(logoImage);
+        add(Box.createVerticalStrut(30));
 
-        add(logoImage, Component.CENTER_ALIGNMENT);
-        add(Box.createVerticalStrut(20));
-        add(usernameLabel, Component.LEFT_ALIGNMENT);
-        add(username, Component.CENTER_ALIGNMENT);
-        add(Box.createVerticalStrut(20));
-        add(passwordLabel, Component.LEFT_ALIGNMENT);
-        add(password, Component.CENTER_ALIGNMENT);
-        add(Box.createVerticalStrut(20));
-        add(submitBtn, Component.CENTER_ALIGNMENT);
+        add(usernameLabel);
+        add(Box.createVerticalStrut(5));
+        add(username);
 
+        add(Box.createVerticalStrut(20));
+
+        add(passwordLabel);
+        add(Box.createVerticalStrut(5));
+        add(password);
+
+        add(Box.createVerticalStrut(25));
+
+        add(submitBtn);
+
+        add(Box.createVerticalGlue());
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        // Not needed because the button uses its own ActionListener
     }
 }

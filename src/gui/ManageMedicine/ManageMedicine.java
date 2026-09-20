@@ -45,10 +45,6 @@ public class ManageMedicine extends JPanel {
         );
 
 
-        // =========================================
-        // TITLE
-        // =========================================
-
         JLabel title =
                 new JLabel("Manage Medicines");
 
@@ -59,36 +55,18 @@ public class ManageMedicine extends JPanel {
         add(title, BorderLayout.NORTH);
 
 
-        // =========================================
         // MEDICINE TABLE
-        // =========================================
-
         String[] columns = {
-                "ID",
-                "Name",
-                "Company",
-                "Type",
-                "Price",
-                "Stock",
-                "Reorder Level",
-                "Expiry Date",
-                "Supplier"
+                "ID", "Name", "Company",
+                "Type", "Price", "Stock",
+                "Reorder Level", "Expiry Date", "Supplier"
         };
 
         tableModel =
                 new DefaultTableModel(
                         columns,
                         0
-                ) {
-
-                    @Override
-                    public boolean isCellEditable(
-                            int row,
-                            int column
-                    ) {
-                        return false;
-                    }
-                };
+                ) {};
 
 
         medicineTable =
@@ -114,66 +92,58 @@ public class ManageMedicine extends JPanel {
         );
 
 
-        // =========================================
-        // FORM
-        // =========================================
 
+        // Form -
         JPanel formPanel =
                 new JPanel(new GridBagLayout());
 
-        GridBagConstraints gbc =
+        GridBagConstraints grid_bag_constraints =
                 new GridBagConstraints();
 
-        gbc.insets =
+        grid_bag_constraints.insets =
                 new Insets(5, 5, 5, 5);
 
-        gbc.fill =
+        grid_bag_constraints.fill =
                 GridBagConstraints.HORIZONTAL;
 
-
-        // -----------------------------------------
         // Medicine Name
-        // -----------------------------------------
-
-        gbc.gridx = 0;
-        gbc.gridy = 0;
+        grid_bag_constraints.gridx = 0;
+        grid_bag_constraints.gridy = 0;
 
         formPanel.add(
                 new JLabel("Medicine Name:"),
-                gbc
+                grid_bag_constraints
         );
 
         nameField =
                 new JTextField(18);
 
-        gbc.gridx = 1;
+        grid_bag_constraints.gridx = 1;
 
         formPanel.add(
                 nameField,
-                gbc
+                grid_bag_constraints
         );
 
 
-        // -----------------------------------------
-        // Company
-        // -----------------------------------------
 
-        gbc.gridx = 0;
-        gbc.gridy = 1;
+        // Company
+        grid_bag_constraints.gridx = 0;
+        grid_bag_constraints.gridy = 1;
 
         formPanel.add(
                 new JLabel("Company:"),
-                gbc
+                grid_bag_constraints
         );
 
         companyField =
                 new JTextField(18);
 
-        gbc.gridx = 1;
+        grid_bag_constraints.gridx = 1;
 
         formPanel.add(
                 companyField,
-                gbc
+                grid_bag_constraints
         );
 
 
@@ -181,22 +151,22 @@ public class ManageMedicine extends JPanel {
         // Medicine Type
         // -----------------------------------------
 
-        gbc.gridx = 0;
-        gbc.gridy = 2;
+        grid_bag_constraints.gridx = 0;
+        grid_bag_constraints.gridy = 2;
 
         formPanel.add(
                 new JLabel("Medicine Type:"),
-                gbc
+                grid_bag_constraints
         );
 
         typeField =
                 new JTextField(18);
 
-        gbc.gridx = 1;
+        grid_bag_constraints.gridx = 1;
 
         formPanel.add(
                 typeField,
-                gbc
+                grid_bag_constraints
         );
 
 
@@ -204,22 +174,22 @@ public class ManageMedicine extends JPanel {
         // Price
         // -----------------------------------------
 
-        gbc.gridx = 0;
-        gbc.gridy = 3;
+        grid_bag_constraints.gridx = 0;
+        grid_bag_constraints.gridy = 3;
 
         formPanel.add(
                 new JLabel("Price:"),
-                gbc
+                grid_bag_constraints
         );
 
         priceField =
                 new JTextField(18);
 
-        gbc.gridx = 1;
+        grid_bag_constraints.gridx = 1;
 
         formPanel.add(
                 priceField,
-                gbc
+                grid_bag_constraints
         );
 
 
@@ -227,22 +197,22 @@ public class ManageMedicine extends JPanel {
         // Quantity
         // -----------------------------------------
 
-        gbc.gridx = 0;
-        gbc.gridy = 4;
+        grid_bag_constraints.gridx = 0;
+        grid_bag_constraints.gridy = 4;
 
         formPanel.add(
                 new JLabel("Quantity in Stock:"),
-                gbc
+                grid_bag_constraints
         );
 
         quantityField =
                 new JTextField(18);
 
-        gbc.gridx = 1;
+        grid_bag_constraints.gridx = 1;
 
         formPanel.add(
                 quantityField,
-                gbc
+                grid_bag_constraints
         );
 
 
@@ -250,22 +220,22 @@ public class ManageMedicine extends JPanel {
         // Reorder Level
         // -----------------------------------------
 
-        gbc.gridx = 0;
-        gbc.gridy = 5;
+        grid_bag_constraints.gridx = 0;
+        grid_bag_constraints.gridy = 5;
 
         formPanel.add(
                 new JLabel("Reorder Level:"),
-                gbc
+                grid_bag_constraints
         );
 
         reorderLevelField =
                 new JTextField(18);
 
-        gbc.gridx = 1;
+        grid_bag_constraints.gridx = 1;
 
         formPanel.add(
                 reorderLevelField,
-                gbc
+                grid_bag_constraints
         );
 
 
@@ -273,12 +243,12 @@ public class ManageMedicine extends JPanel {
         // Expiry Date
         // -----------------------------------------
 
-        gbc.gridx = 0;
-        gbc.gridy = 6;
+        grid_bag_constraints.gridx = 0;
+        grid_bag_constraints.gridy = 6;
 
         formPanel.add(
                 new JLabel("Expiry Date:"),
-                gbc
+                grid_bag_constraints
         );
 
         expiryDateField =
@@ -288,11 +258,11 @@ public class ManageMedicine extends JPanel {
                 "Format: YYYY-MM-DD"
         );
 
-        gbc.gridx = 1;
+        grid_bag_constraints.gridx = 1;
 
         formPanel.add(
                 expiryDateField,
-                gbc
+                grid_bag_constraints
         );
 
 
@@ -300,22 +270,22 @@ public class ManageMedicine extends JPanel {
         // Supplier
         // -----------------------------------------
 
-        gbc.gridx = 0;
-        gbc.gridy = 7;
+        grid_bag_constraints.gridx = 0;
+        grid_bag_constraints.gridy = 7;
 
         formPanel.add(
                 new JLabel("Supplier:"),
-                gbc
+                grid_bag_constraints
         );
 
         supplierComboBox =
                 new JComboBox<>();
 
-        gbc.gridx = 1;
+        grid_bag_constraints.gridx = 1;
 
         formPanel.add(
                 supplierComboBox,
-                gbc
+                grid_bag_constraints
         );
 
 

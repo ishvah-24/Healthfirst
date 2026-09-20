@@ -1,6 +1,6 @@
 package gui;
 
-import reports.ReportService;
+import service.ReportService;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

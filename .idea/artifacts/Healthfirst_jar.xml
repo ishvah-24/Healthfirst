@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Healthfirst:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Healthfirst_jar</output-path>
+    <root id="archive" name="Healthfirst.jar">
+      <element id="module-output" name="Healthfirst" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/mysql-connector-j-26.7.0/mysql-connector-j-26.7.0/mysql-connector-j-26.7.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

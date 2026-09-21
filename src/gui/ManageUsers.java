@@ -69,21 +69,31 @@ class Manageusers extends JPanel {
         gbc.gridx=1;
         formPanel.add(passwordField,gbc);
 
-        //creates the buttons for account management
-        JPanel buttonPanel=new JPanel(new FlowLayout(FlowLayout.LEFT));
+        // Creates the buttons for account management
+        JPanel buttonPanel=new JPanel(new GridLayout(2,2,10,10));
+
         JButton createButton=new JButton("Create Cashier");
         JButton updateButton=new JButton("Update");
         JButton deleteButton=new JButton("Delete");
         JButton clearButton=new JButton("Clear");
+
+        Dimension buttonSize=new Dimension(160,55);
+
+        createButton.setPreferredSize(buttonSize);
+        updateButton.setPreferredSize(buttonSize);
+        deleteButton.setPreferredSize(buttonSize);
+        clearButton.setPreferredSize(buttonSize);
+
         buttonPanel.add(createButton);
         buttonPanel.add(updateButton);
         buttonPanel.add(deleteButton);
         buttonPanel.add(clearButton);
 
-        //places the form and buttons at the bottom
-        JPanel bottomPanel=new JPanel(new BorderLayout());
-        bottomPanel.add(formPanel,BorderLayout.CENTER);
-        bottomPanel.add(buttonPanel,BorderLayout.SOUTH);
+// Places the form and buttons next to each other
+        JPanel bottomPanel=new JPanel(new FlowLayout(FlowLayout.LEFT,20,10));
+        bottomPanel.add(formPanel);
+        bottomPanel.add(buttonPanel);
+
         add(bottomPanel,BorderLayout.SOUTH);
 
         //adding functionality to buttons by connecting their function

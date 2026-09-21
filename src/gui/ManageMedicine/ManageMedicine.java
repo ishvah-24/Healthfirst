@@ -121,20 +121,29 @@ public class ManageMedicine extends JPanel {
         formPanel.add(supplierComboBox,grid_bag_constraints);
 
         // creates the buttons used to manage medicines
-        JPanel buttonPanel=new JPanel(new FlowLayout(FlowLayout.LEFT));
+        // Creates the buttons used to manage medicines
+        JPanel buttonPanel=new JPanel(new GridLayout(2,2,10,10));
+
         JButton addButton=new JButton("Add Medicine");
         JButton updateButton=new JButton("Update");
         JButton deleteButton=new JButton("Delete");
         JButton clearButton=new JButton("Clear");
+
+        Dimension buttonSize=new Dimension(140,50);
+        addButton.setPreferredSize(buttonSize);
+        updateButton.setPreferredSize(buttonSize);
+        deleteButton.setPreferredSize(buttonSize);
+        clearButton.setPreferredSize(buttonSize);
+
         buttonPanel.add(addButton);
         buttonPanel.add(updateButton);
         buttonPanel.add(deleteButton);
         buttonPanel.add(clearButton);
 
-        // Places the form and buttons at the bottom of the panel
-        JPanel bottomPanel=new JPanel(new BorderLayout());
-        bottomPanel.add(formPanel,BorderLayout.CENTER);
-        bottomPanel.add(buttonPanel,BorderLayout.SOUTH);
+// Places the form and buttons next to each other
+        JPanel bottomPanel=new JPanel(new FlowLayout(FlowLayout.LEFT,20,10));
+        bottomPanel.add(formPanel);
+        bottomPanel.add(buttonPanel);
         add(bottomPanel,BorderLayout.SOUTH);
 
         // connects each button to its method

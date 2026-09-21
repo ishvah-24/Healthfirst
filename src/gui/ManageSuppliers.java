@@ -86,12 +86,20 @@ public class ManageSuppliers extends JPanel {
         formPanel.add(addressField, gbc);
 
         // Buttons
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+// Buttons
+        JPanel buttonPanel = new JPanel(new GridLayout(2, 2, 10, 10));
 
         JButton addButton = new JButton("Add Supplier");
         JButton updateButton = new JButton("Update");
         JButton deleteButton = new JButton("Delete");
         JButton clearButton = new JButton("Clear");
+
+        Dimension buttonSize = new Dimension(160, 55);
+
+        addButton.setPreferredSize(buttonSize);
+        updateButton.setPreferredSize(buttonSize);
+        deleteButton.setPreferredSize(buttonSize);
+        clearButton.setPreferredSize(buttonSize);
 
         buttonPanel.add(addButton);
         buttonPanel.add(updateButton);
@@ -99,9 +107,9 @@ public class ManageSuppliers extends JPanel {
         buttonPanel.add(clearButton);
 
         // Bottom section
-        JPanel bottomPanel = new JPanel(new BorderLayout());
-        bottomPanel.add(formPanel, BorderLayout.CENTER);
-        bottomPanel.add(buttonPanel, BorderLayout.SOUTH);
+        JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 10));
+        bottomPanel.add(formPanel);
+        bottomPanel.add(buttonPanel);
 
         add(bottomPanel, BorderLayout.SOUTH);
 

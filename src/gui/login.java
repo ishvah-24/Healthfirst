@@ -19,7 +19,7 @@ class login extends JPanel implements ActionListener {
         setBackground(Color.WHITE);
 
         //logo
-        ImageIcon logo = new ImageIcon("health_low_res.png");
+        ImageIcon logo = new ImageIcon(getClass().getResource("/health_low_res.png"));
         JLabel logoImage = new JLabel(logo);
         logoImage.setAlignmentX(Component.CENTER_ALIGNMENT);
 
